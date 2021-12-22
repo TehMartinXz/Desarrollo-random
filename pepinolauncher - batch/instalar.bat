@@ -438,7 +438,7 @@ if %type%==back goto inicio
 cls
 color b
 echo Descargando modpack OptiFabric
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric.zip', 'OptiFabric.zip')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric-1.18.1.zip', 'OptiFabric-1.18.1.zip')"
 echo Modpack descargado (Archivo "OptiFabric-1.18.1.zip").
 echo Seleccionar Minecraft 1.18.1 y Loader 0.12.12 en la ventana del cliente (Por defecto)
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar', 'fabric-installer-0.10.2.jar')"
