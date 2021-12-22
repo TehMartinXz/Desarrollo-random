@@ -1,0 +1,11 @@
+{
+  "name": "pepinolauncher---batch",
+  "version": "0.4.2",
+  "description": "Launcher oficial de PepinoLandia",
+  "main": "instalar.bat",
+  "scripts": {
+    "start": "start instalar.bat"
+  },
+  "author": "MilleniumMods",
+  "license": "ISC"
+}
