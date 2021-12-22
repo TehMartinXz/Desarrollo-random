@@ -3,21 +3,21 @@
  # PepinoLandia Launcher - Beta 0.4   #
  ######################################
 
-[ VERSIÓN ACTUAL: 0.4.3 - Si no tienes esta versión, utiliza la opción "actualizar" para descargar la última versión ]
+[ VERSIÓN ACTUAL: 0.4.4 - Si no tienes esta versión, utiliza la opción "actualizar" para descargar la última versión ]
 
-1) Después de ejecutar el instalador.
+1) Instalar OptiFabric 1.16.5
  
  1.a]
-  - Si es que tienes los archivos de Minecraft en la carpeta ".minecraft" utiliza la primera opción y se instalará todo automáticamente. ¡Así de fácil!
+  Si es que tienes los archivos de Minecraft en la carpeta ".minecraft" utiliza la primera opción y se instalará todo automáticamente. ¡Así de fácil!
   - Si tienes mods en tu carpeta "mods", primero elimínalos y luego ejecuta la instalación del launcher ¡Si es que ya lo instalaste no te preocupes que el proceso se puede repetir cuantas veces quieras!
 
  1.b]
-  - Si es que tienes los archivos de Minecraft en la carpeta ".tlauncher", utiliza la segunda opción y debería instalarse todo automáticamente.
+  Si es que tienes los archivos de Minecraft en la carpeta ".tlauncher", utiliza la segunda opción y debería instalarse todo automáticamente.
   - Esta opción es experimental, si es que no funciona, sigue los pasos del (1.c).
   - Si tienes mods en la carpeta "mods", primero elimínalos y luego ejecuta la instalación.
   
  1.c]
-  - Si es que tienes los archivos de Minecraft en otra carpeta que no sea la ".minecraft" dentro de Roaming > AppData (Lo que hacen varios launchers no-premium), tendrás que instalar todo manualmente.
+  Si es que tienes los archivos de Minecraft en otra carpeta que no sea la ".minecraft" dentro de Roaming > AppData (Lo que hacen varios launchers no-premium), tendrás que instalar todo manualmente.
   - Utiliza la tercera opción en este caso y se descargarán los archivos necesarios dentro de la carpeta en la que tengas el instalador (Si sólo ejecutaste el instalador a penas descargarlo, entonces seguramente esté todo dentro de la carpeta de descargas).
   - Para instalar Fabric deberás seleccionar la carpeta donde esté instalado tu juego.
   - Para instalar el modpack deberás mover el archivo "OptiFabric.zip" que se habrá descargado automáticamente al ejecutar la opción 2 hacia tu carpeta de mods. Una vez ahí tendrás que extraerlo, y listo.
