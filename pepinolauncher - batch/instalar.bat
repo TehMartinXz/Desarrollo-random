@@ -1,11 +1,11 @@
 REM Hecho por: MilleniumMods
 REM Hecho para: PepinoLandia
-REM Versión: Beta 0.4.4
+REM Versión: Beta 0.4.5
 @echo off
  :0
 cls
 color e
-Title PepinoLandia - Launcher Beta 0.4.4
+Title PepinoLandia - Launcher Beta 0.4.5
 echo Escribe (1) para instalar OptiFabric 1.16.5 automaticamente (.minecraft)
 echo Escribe (2) para instalar OptiFabric 1.16.5 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
 echo Escribe (3) para instalar OptiFabric 1.16.5 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
@@ -43,7 +43,7 @@ goto inicio
  :inicio
 cls
 color e
-Title PepinoLandia - Launcher Beta 0.4.4
+Title PepinoLandia - Launcher Beta 0.4.5
 echo Escribe (1) para instalar OptiFabric 1.16.5 automaticamente (.minecraft)
 echo Escribe (2) para instalar OptiFabric 1.16.5 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
 echo Escribe (3) para instalar OptiFabric 1.16.5 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
@@ -122,7 +122,7 @@ goto inicio
  :lucky
 cls
 color d
-Title PepinoLandia - Launcher Beta 0.4.4 - Instalar PepinoLucky
+Title PepinoLandia - Launcher Beta 0.4.5 - Instalar PepinoLucky
 if exist PepinoLucky.zip (
 	echo Modpack ya esta descargado, moviendo a la carpeta mods...
 	copy "%~dp0\PepinoLucky.zip" "%APPDATA%/.minecraft/"
@@ -158,7 +158,7 @@ if exist PepinoLucky.zip (
  :ltl
 cls
 color d
-Title PepinoLandia - Launcher Beta 0.4.4 - Instalar PepinoLucky
+Title PepinoLandia - Launcher Beta 0.4.5 - Instalar PepinoLucky
 if exist PepinoLucky.zip (
 	echo Modpack ya esta descargado, moviendo a la carpeta mods...
 	copy "%~dp0\PepinoLucky.zip" "%APPDATA%/.tlauncher/"
@@ -315,9 +315,7 @@ if %type%==back goto pl2
 goto inicio
 
  :actualizar
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/instalar.zip', 'instalar.zip')"
-powershell Expand-Archive instalar.zip -DestinationPath %~dp0 -Force
-del "%~dp0\instalar.zip"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/descargar.php', 'instalar.bat')"
 echo Actualizado!
 goto 0
 
