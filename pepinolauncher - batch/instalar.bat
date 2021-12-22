@@ -212,7 +212,8 @@ color e
 Title Changelog - PepinoLauncher
 echo Cambios de la version:
 echo.
-echo - Aplicar parche de seguridad para las instalaciones de Fabric.
+echo - Actualizar las instalaciones de Fabric para el ultimo parche de seguridad sobre el Log4J2
+echo - Agregar la opcion de instalar OptiFabric 1.18.1
 echo.
 echo Escribe "back" para volver al menu anterior.
 set /p type=
