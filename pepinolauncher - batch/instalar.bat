@@ -137,7 +137,7 @@ if exist PepinoLucky.zip (
 	echo Escribe lo que sea para finalizar.
 	set /p type=
 	if %type%==back goto inicio
-	exit
+	goto inicio
 )
 	echo Descargando modpack de PepinoLucky (2.5Mb)
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/PepinoLucky.zip', 'PepinoLucky.zip')"
@@ -153,6 +153,7 @@ if exist PepinoLucky.zip (
 	echo Escribe lo que sea para finalizar.
 	set /p type=
 	if %type%==back goto inicio
+	goto inicio
 
  :ltl
 cls
@@ -171,7 +172,7 @@ if exist PepinoLucky.zip (
 	echo Escribe lo que sea para finalizar.
 	set /p type=
 	if %type%==back goto pl2
-	exit
+	goto inicio
 )
 	echo Descargando modpack de PepinoLucky (2.5Mb).
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/PepinoLucky.zip', 'PepinoLucky.zip')"
@@ -187,6 +188,7 @@ if exist PepinoLucky.zip (
 	echo Escribe lo que sea para finalizar.
 	set /p type=
 	if %type%==back goto pl2
+	goto inicio
 
  :pl2
 cls
@@ -202,6 +204,7 @@ if %type%==1 goto pl2_1
 if %type%==2 goto pl2_2
 if %type%==3 goto pl2_3
 if %type%==back goto inicio
+goto pl2
 
  :cambios
 cls
@@ -214,6 +217,7 @@ echo.
 echo Escribe "back" para volver al menu anterior.
 set /p type=
 if %type%==back goto inicio
+goto inicio
 
  :pl2_1
 cls
@@ -232,7 +236,7 @@ if exist Modpack-PL2.zip (
 	echo Escribe lo que sea para finalizar.
 	set /p type=
 	if %type%==back goto pl2
-	exit
+	goto inicio
 )
 	echo Descargando modpack de PepinoLandia2, esto puede tomar unos minutos (112Mb). Se avisara cuando termine la descarga...
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/Modpack-PL2.zip', 'Modpack-PL2.zip')"
@@ -248,7 +252,7 @@ if exist Modpack-PL2.zip (
 	echo Escribe lo que sea para finalizar.
 	set /p type=
 	if %type%==back goto pl2
-
+	goto inicio
 
  :pl2_2
 cls
@@ -267,7 +271,7 @@ if exist Modpack-PL2.zip (
 	echo Escribe lo que sea para finalizar.
 	set /p type=
 	if %type%==back goto pl2
-	exit
+	goto inicio
 )
 	echo Descargando modpack de PepinoLandia2, esto puede tomar unos minutos (112Mb). Se avisara cuando termine la descarga...
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/Modpack-PL2.zip', 'Modpack-PL2.zip')"
@@ -284,7 +288,7 @@ if exist Modpack-PL2.zip (
 	echo Escribe lo que sea para finalizar.
 	set /p type=
 	if %type%==back goto pl2
-
+	goto inicio
 
  :pl2_3
 cls
@@ -307,6 +311,7 @@ echo Escribe "back" para volver al menu anterior.
 echo Escribe lo que sea para finalizar.
 set /p type=
 if %type%==back goto pl2
+goto inicio
 
  :actualizar
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/instalar.zip', 'instalar.zip')"
@@ -340,6 +345,7 @@ echo Escribe "back" para volver al menu anterior.
 echo Escribe lo que sea para finalizar.
 set /p type=
 if %type%==back goto inicio
+goto inicio
 
  :4
 cls
@@ -364,7 +370,7 @@ echo Escribe "back" para volver al menu anterior.
 echo Escribe lo que sea para finalizar.
 set /p type=
 if %type%==back goto inicio
-
+goto inicio
 
 
  :2
@@ -391,6 +397,7 @@ echo Escribe "back" para volver al menu anterior.
 echo Escribe lo que sea para finalizar.
 set /p type=
 if %type%==back goto inicio
+goto inicio
 
  :5
 cls
@@ -416,7 +423,7 @@ echo Escribe "back" para volver al menu anterior.
 echo Escribe lo que sea para finalizar.
 set /p type=
 if %type%==back goto inicio
-
+goto inicio
 
  :3
 cls
@@ -433,6 +440,7 @@ echo Escribe "back" para volver al menu anterior.
 echo Escribe lo que sea para finalizar.
 set /p type=
 if %type%==back goto inicio
+goto inicio
 
  :6
 cls
@@ -451,3 +459,4 @@ echo Escribe "back" para volver al menu anterior.
 echo Escribe lo que sea para finalizar.
 set /p type=
 if %type%==back goto inicio
+goto inicio
