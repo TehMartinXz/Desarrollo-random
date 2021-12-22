@@ -1,6 +1,6 @@
 {
   "name": "pepinolauncher---batch",
-  "version": "0.4.2",
+  "version": "0.4.4",
   "description": "Launcher oficial de PepinoLandia",
   "main": "instalar.bat",
   "scripts": {
