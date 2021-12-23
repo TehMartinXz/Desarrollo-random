@@ -315,7 +315,7 @@ if %type%==back goto pl2
 goto inicio
 
  :actualizar
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/descargar.php', 'instalar.bat')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/launcher.php', 'instalar.bat')"
 echo Actualizado!
 goto 0
 
