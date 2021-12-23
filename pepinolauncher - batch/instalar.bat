@@ -1,11 +1,13 @@
 REM Hecho por: MilleniumMods
 REM Hecho para: PepinoLandia
 REM Versión: Beta 0.4.5
+set version=0.4.5
+
 @echo off
  :0
 cls
 color e
-Title PepinoLandia - Launcher Beta 0.4.5
+Title PepinoLandia - Launcher Beta %version%
 echo Escribe (1) para instalar OptiFabric 1.16.5 automaticamente (.minecraft)
 echo Escribe (2) para instalar OptiFabric 1.16.5 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
 echo Escribe (3) para instalar OptiFabric 1.16.5 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
@@ -22,8 +24,16 @@ echo Escribe (actualizar) para actualizar PepinoLauncher.
 echo Escribe (c) para ver las notas de la version.
 echo Escribe (limpiar) para eliminar la carpeta mods de tu .minecraft o de tu .tlauncher - Sirve para reinstalar los mods desde cero.
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/INSTRUCCIONES.TXT', 'INSTRUCCIONES.TXT')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/version.txt', 'version.txt')"
+set /p build=<version.txt
+
 if exist INSTRUCCIONES.TXT (
 	start "" "INSTRUCCIONES.TXT"
+)
+if %version%==%build% (
+	REM HACER ALGO CON ESTO PARA VERIFICAR SI LA VERSIÓN ES LA MÁS RECIENTE
+) else (
+	msg "%username%" "Actualizacion del launcher disponible! Utiliza el comando 'actualizar' para actualizar el launcher."
 )
 set /p type=
 if %type%==1 goto 1
@@ -43,7 +53,7 @@ goto inicio
  :inicio
 cls
 color e
-Title PepinoLandia - Launcher Beta 0.4.5
+Title PepinoLandia - Launcher Beta %version%
 echo Escribe (1) para instalar OptiFabric 1.16.5 automaticamente (.minecraft)
 echo Escribe (2) para instalar OptiFabric 1.16.5 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
 echo Escribe (3) para instalar OptiFabric 1.16.5 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
@@ -122,7 +132,7 @@ goto inicio
  :lucky
 cls
 color d
-Title PepinoLandia - Launcher Beta 0.4.5 - Instalar PepinoLucky
+Title PepinoLandia - Launcher Beta %version% - Instalar PepinoLucky
 if exist PepinoLucky.zip (
 	echo Modpack ya esta descargado, moviendo a la carpeta mods...
 	copy "%~dp0\PepinoLucky.zip" "%APPDATA%/.minecraft/"
@@ -158,7 +168,7 @@ if exist PepinoLucky.zip (
  :ltl
 cls
 color d
-Title PepinoLandia - Launcher Beta 0.4.5 - Instalar PepinoLucky
+Title PepinoLandia - Launcher Beta %version% - Instalar PepinoLucky
 if exist PepinoLucky.zip (
 	echo Modpack ya esta descargado, moviendo a la carpeta mods...
 	copy "%~dp0\PepinoLucky.zip" "%APPDATA%/.tlauncher/"
@@ -315,9 +325,14 @@ if %type%==back goto pl2
 goto inicio
 
  :actualizar
+ if %version%==%build% (
+	msg "%username%" "Tu launcher ya esta actualizado! Si crees que no lo esta, accede a pepinolandia.ml/launcher"
+) else (
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/launcher.php', 'instalar.bat')"
 echo Actualizado!
 goto 0
+)
+goto inicio
 
 REM OPTIFABRIC
 
