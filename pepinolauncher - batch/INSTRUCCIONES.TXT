@@ -3,7 +3,7 @@
  # PepinoLandia Launcher - Beta 0.4   #
  ######################################
 
-[ VERSIÓN ACTUAL: 0.4.4 - Si no tienes esta versión, utiliza la opción "actualizar" para descargar la última versión ]
+[ VERSIÓN ACTUAL: 0.4.5 - Si no tienes esta versión, utiliza la opción "actualizar" para descargar la última versión ]
 
 1) Instalar OptiFabric 1.16.5
  
