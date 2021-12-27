@@ -1,7 +1,7 @@
 REM Hecho por: MilleniumMods
 REM Hecho para: PepinoLandia
-REM Versión: Beta 0.4.5
-set version=0.4.5
+REM Versión: Beta 0.4.6
+set version=0.4.6
 
 @echo off
  :0
