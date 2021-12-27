@@ -23,6 +23,7 @@ echo.
 echo Escribe (actualizar) para actualizar PepinoLauncher.
 echo Escribe (c) para ver las notas de la version.
 echo Escribe (limpiar) para eliminar la carpeta mods de tu .minecraft o de tu .tlauncher - Sirve para reinstalar los mods desde cero.
+echo Escribe (bug) para verificar si el exploit de Log4J sigue activo.
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/INSTRUCCIONES.TXT', 'INSTRUCCIONES.TXT')"
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/version.txt', 'version.txt')"
 set /p build=<version.txt
@@ -48,6 +49,7 @@ if %type%==c goto cambios
 if %type%==lucky goto lucky
 if %type%==ltl goto ltl
 if %type%==limpiar goto limpiar
+if %type%==bug goto bug
 goto inicio
 
  :inicio
@@ -69,6 +71,7 @@ echo.
 echo Escribe (actualizar) para actualizar PepinoLauncher.
 echo Escribe (c) para ver las notas de la version.
 echo Escribe (limpiar) para eliminar la carpeta mods de tu .minecraft o de tu .tlauncher - Sirve para reinstalar los mods desde cero.
+echo Escribe (bug) para verificar si el exploit de Log4J sigue activo.
 set /p type=
 if %type%==1 goto 1
 if %type%==2 goto 2
@@ -82,7 +85,21 @@ if %type%==c goto cambios
 if %type%==lucky goto lucky
 if %type%==ltl goto ltl
 if %type%==limpiar goto limpiar
+if %type%==bug goto bug
 goto inicio
+
+ :bug
+cls
+>nul findstr "${date:YYYY}" %APPDATA%\.minecraft\logs\latest.log && (
+  echo "${date:YYYY}" fue encontrado. Lo que significa que estas protegido del exploit!.
+) || (
+  echo "${date:YYYY}" NO fue encontrado. Si ya has escrito el mensaje en el chat de Minecraft, entonces muy probablemente eres vulnerable al exploit!
+)
+	echo.
+	echo Escribe "back" para volver al menu anterior.
+	set /p type=
+	if %type%==back goto inicio
+	goto inicio
 
  :limpiar
  	cls
