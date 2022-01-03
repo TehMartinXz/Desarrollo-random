@@ -1,7 +1,7 @@
 REM Hecho por: MilleniumMods
 REM Hecho para: PepinoLandia
-REM Versión: Beta 0.4.6
-set version=0.4.6
+REM Versi�1�7�1�7n: Beta 0.4.8
+set version=0.4.8
 
 @echo off
  :0
@@ -32,7 +32,7 @@ if exist INSTRUCCIONES.TXT (
 	start "" "INSTRUCCIONES.TXT"
 )
 if %version%==%build% (
-	REM HACER ALGO CON ESTO PARA VERIFICAR SI LA VERSIÓN ES LA MÁS RECIENTE
+	REM HACER ALGO CON ESTO PARA VERIFICAR SI LA VERSI�1�70�1�77N ES LA M�1�70�1�79S RECIENTE
 ) else (
 	msg "%username%" "Actualizacion del launcher disponible! Utiliza el comando 'actualizar' para actualizar el launcher."
 )
@@ -40,9 +40,9 @@ set /p type=
 if %type%==1 goto 1
 if %type%==2 goto 2
 if %type%==3 goto 3
-if %type%==1 goto 4
-if %type%==2 goto 5
-if %type%==3 goto 6
+if %type%==4 goto 4
+if %type%==5 goto 5
+if %type%==6 goto 6
 if %type%==actualizar goto actualizar
 if %type%==pl2 goto pl2
 if %type%==c goto cambios
@@ -76,9 +76,9 @@ set /p type=
 if %type%==1 goto 1
 if %type%==2 goto 2
 if %type%==3 goto 3
-if %type%==1 goto 4
-if %type%==2 goto 5
-if %type%==3 goto 6
+if %type%==4 goto 4
+if %type%==5 goto 5
+if %type%==6 goto 6
 if %type%==actualizar goto actualizar
 if %type%==pl2 goto pl2
 if %type%==c goto cambios
@@ -239,8 +239,9 @@ color e
 Title Changelog - PepinoLauncher
 echo Cambios de la version:
 echo.
-echo - Actualizar las instalaciones de Fabric para el ultimo parche de seguridad sobre el Log4J2
-echo - Agregar la opcion de instalar OptiFabric 1.18.1
+echo - Arreglar las opciones de OptiFabric 1.18.1
+echo - Actualizar Lithium en el OptiFabric 1.18.1
+echo - Hacer que se ejecute la nueva version del PepinoLauncher al actualizar
 echo.
 echo Escribe "back" para volver al menu anterior.
 set /p type=
@@ -347,7 +348,9 @@ goto inicio
 ) else (
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/launcher.php', 'instalar.bat')"
 echo Actualizado!
-goto 0
+start instalar.bat
+exit
+)
 )
 goto inicio
 
