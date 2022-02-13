@@ -16,21 +16,22 @@ const lepikEvents = require('lepikevents');
 **/
 
 // Opciones
-const intervalo = '3' // El intervalo de tiempo en segundos para hacer click
+const intervalo = '5' // El intervalo de tiempo en segundos para hacer click
 const inicio = '0' // El tiempo que tomará para empezar a ejecutar los clicks una vez iniciado el script
-const clicks = false // ¿Debería iniciarse/apagarse al hacer click, o después del tiempo de inicio/límite?
+const clicks = true // ¿Debería iniciarse/apagarse al hacer click, o después del tiempo de inicio/límite?
 const autoapagado = false // ¿Debería apagarse el autoclick una vez se mueva el mouse?
 const autolimite = false // ¿Debería apagarse el autoclick una vez pase cierto tiempo?
 const tiempolimite = '15' // Si la opción "autolimite" está activada, ¿Al pasar cuánto tiempo se apagará el autoclick?
 const modoseguro = false // ¿Deberían hacerse clicks en un intervalo semi-aleatorio de tiempo para no ser detectado?
 const modosegurotiempo = '501' // Con modo seguro, esta será la variación del intervalo en ms en el que se harán los clicks.
+const debug = true // ¿Debería mostrarse información de logueo extra con ciertas funciones?
 
 db.set('clicksdb', false)
 
 if(clicks) {
     console.log(
         'Logs: \n' +
-        'Autoclick manual iniciando en 5 segundos.'
+        `Autoclick manual iniciando en ${inicio} segundos.`
     )
     setTimeout(() => {
         console.log('Iniciado')
@@ -38,18 +39,22 @@ if(clicks) {
         const clicks = db.get('clicksdb')
         if(clicks === false) {
         if(data[2] == 1) {
-            console.log('1 ejecutado')
+            db.set('clicksdb', true)
+            console.log('Click izquierdo presionado manualmente')
 
             function click() {
-                console.log('ads')
+                if(debug) {
+                console.log('Click ejecutado por el autoclick')
+                }
                 robot.mouseClick();
-                db.set('clicksdb', true)
             }
             
+            if(clicks) {
+                console.log('El autoclicker manual ya está activo')
+            } else {
             clickevento = setInterval(click, intervalo * 1000);
+            }
 
-        } else {
-            console.log('Ya está activo')
         }
         }
         if(data[2] == 2) {
@@ -58,14 +63,12 @@ if(clicks) {
             } else {
             console.log('Click finalizado')
             clearInterval(clickevento)
-            clearTimeout(clickevento)
             db.set('clicksdb', false)
-                
 
             }
         }
     })
-}, 5000)
+}, inicio * 1000)
 
 } else {
 console.log(
