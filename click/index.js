@@ -4,12 +4,12 @@ const lepikEvents = require('lepikevents');
 
 /**
  *         OPCIONES
- *  @param intervalo : type: string, default: '1'
+ *  @param intervalo : type: string, default: '3'
  *  @param inicio : type: string, default: '0'
  *  @param clicks : type: boolean, default: false
  *  @param autoapagado : type: boolean, default: false
  *  @param autolimite : type: boolean, default: false
- *  @param tiempolimite : type: string, default: '1'
+ *  @param tiempolimite : type: string, default: '15'
  *  @param modoseguro : type: boolean, default: false
  *  @param modosegurotiempo : type: string, default: '501'
  * 
@@ -17,13 +17,13 @@ const lepikEvents = require('lepikevents');
 
 // Opciones
 const intervalo = '3' // El intervalo de tiempo en segundos para hacer click
-const inicio = '7' // El tiempo que tomará para empezar a ejecutar los clicks una vez iniciado el script
-const clicks = true // ¿Debería iniciarse/apagarse al hacer click, o después del tiempo de inicio/límite?
+const inicio = '0' // El tiempo que tomará para empezar a ejecutar los clicks una vez iniciado el script
+const clicks = false // ¿Debería iniciarse/apagarse al hacer click, o después del tiempo de inicio/límite?
 const autoapagado = false // ¿Debería apagarse el autoclick una vez se mueva el mouse?
 const autolimite = false // ¿Debería apagarse el autoclick una vez pase cierto tiempo?
-const tiempolimite = '10' // Si la opción "autolimite" está activada, ¿Al pasar cuánto tiempo se apagará el autoclick?
+const tiempolimite = '15' // Si la opción "autolimite" está activada, ¿Al pasar cuánto tiempo se apagará el autoclick?
 const modoseguro = false // ¿Deberían hacerse clicks en un intervalo semi-aleatorio de tiempo para no ser detectado?
-const modosegurotiempo = '5001' // Con modo seguro, esta será la variación del intervalo en ms en el que se harán los clicks.
+const modosegurotiempo = '501' // Con modo seguro, esta será la variación del intervalo en ms en el que se harán los clicks.
 
 db.set('clicksdb', false)
 
