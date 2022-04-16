@@ -1,7 +1,8 @@
 REM Hecho por: MilleniumMods
 REM Hecho para: PepinoLandia
-REM Versi�1�7�1�7n: Beta 0.4.8
-set version=0.4.8
+REM Version: Beta 5.0.0
+set version=5.0.0
+REM ¿Forzar la instalacion del modpack de PepinoLandia?
 
 @echo off
  :0
@@ -12,30 +13,49 @@ echo Escribe (1) para instalar OptiFabric 1.16.5 automaticamente (.minecraft)
 echo Escribe (2) para instalar OptiFabric 1.16.5 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
 echo Escribe (3) para instalar OptiFabric 1.16.5 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
 echo.
-echo Escribe (4) para instalar OptiFabric 1.18.1 automaticamente (.minecraft)
-echo Escribe (5) para instalar OptiFabric 1.18.1 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
-echo Escribe (6) para instalar OptiFabric 1.18.1 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
+echo Escribe (4) para instalar OptiFabric 1.18.2 automaticamente (.minecraft)
+echo Escribe (5) para instalar OptiFabric 1.18.2 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
+echo Escribe (6) para instalar OptiFabric 1.18.2 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
 echo.
 echo Escribe (pl2) para instalar el modpack de PepinoLandia automaticamente.
 echo Escribe (lucky) para instalar el modpack de PepinoLucky automaticamente (.minecraft).
 echo Escribe (ltl) para instalar el modpack de PepinoLucky automaticamente (.tlauncher - [Exclusivo para TLauncher]). - EXPERIMENTAL, PUEDE NO FUNCIONAR.
+echo Escribe (cambio) para intercambiar entre los modpacks de OptiFabric (1.16.5) y PepinoLandia 2
 echo.
 echo Escribe (actualizar) para actualizar PepinoLauncher.
 echo Escribe (c) para ver las notas de la version.
 echo Escribe (limpiar) para eliminar la carpeta mods de tu .minecraft o de tu .tlauncher - Sirve para reinstalar los mods desde cero.
 echo Escribe (bug) para verificar si el exploit de Log4J sigue activo.
+echo.
+echo Escribe (reset) para reiniciar el PepinoLauncher (Solo para propositos de desarrollo)
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/INSTRUCCIONES.TXT', 'INSTRUCCIONES.TXT')"
+if %errorlevel% NEQ 0 (
+	(call )
+	echo Error al descargar las instrucciones. Codigo de error: %errorlevel%
+)
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/version.txt', 'version.txt')"
-set /p build=<version.txt
+if %errorlevel% NEQ 0 (
+	(call )
+	echo Error al verificar la version. Codigo de error: %errorlevel%
+)
+set "build="
+for /F "skip=1 delims=" %%i in (version.txt) do if not defined build set "build=%%i"
+set "forzarmodpack="
+for /F "skip=3 delims=" %%i in (version.txt) do if not defined forzarmodpack set "forzarmodpack=%%i"
+set "forzaractualizacion="
+for /F "skip=5 delims=" %%i in (version.txt) do if not defined forzaractualizacion set "forzaractualizacion=%%i"
+
+if %version% NEQ %build% if %forzaractualizacion%=="true" (
+	goto actualizar
+) else if %version% NEQ %build% (
+	msg "%username%" "Actualizacion del launcher disponible! Utiliza el comando 'actualizar' para actualizar el launcher."
+)
 
 if exist INSTRUCCIONES.TXT (
 	start "" "INSTRUCCIONES.TXT"
 )
-if %version%==%build% (
-	REM HACER ALGO CON ESTO PARA VERIFICAR SI LA VERSI�1�70�1�77N ES LA M�1�70�1�79S RECIENTE
-) else (
-	msg "%username%" "Actualizacion del launcher disponible! Utiliza el comando 'actualizar' para actualizar el launcher."
-)
+
+
 set /p type=
 if %type%==1 goto 1
 if %type%==2 goto 2
@@ -50,6 +70,8 @@ if %type%==lucky goto lucky
 if %type%==ltl goto ltl
 if %type%==limpiar goto limpiar
 if %type%==bug goto bug
+if %type%==reset goto 0
+if %type%==cambio goto cambio
 goto inicio
 
  :inicio
@@ -60,18 +82,21 @@ echo Escribe (1) para instalar OptiFabric 1.16.5 automaticamente (.minecraft)
 echo Escribe (2) para instalar OptiFabric 1.16.5 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
 echo Escribe (3) para instalar OptiFabric 1.16.5 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
 echo.
-echo Escribe (4) para instalar OptiFabric 1.18.1 automaticamente (.minecraft)
-echo Escribe (5) para instalar OptiFabric 1.18.1 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
-echo Escribe (6) para instalar OptiFabric 1.18.1 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
+echo Escribe (4) para instalar OptiFabric 1.18.2 automaticamente (.minecraft)
+echo Escribe (5) para instalar OptiFabric 1.18.2 automaticamente (.tlauncher - [Exclusivo para TLauncher]) - EXPERIMENTAL, PUEDE NO FUNCIONAR
+echo Escribe (6) para instalar OptiFabric 1.18.2 manualmente, util para cuando la instancia de Minecraft no esta en el ".minecraft"
 echo.
 echo Escribe (pl2) para instalar el modpack de PepinoLandia automaticamente.
 echo Escribe (lucky) para instalar el modpack de PepinoLucky automaticamente (.minecraft).
 echo Escribe (ltl) para instalar el modpack de PepinoLucky automaticamente (.tlauncher - [Exclusivo para TLauncher]). - EXPERIMENTAL, PUEDE NO FUNCIONAR.
+echo Escribe (cambio) para intercambiar entre los modpacks de OptiFabric (1.16.5) y PepinoLandia 2
 echo.
 echo Escribe (actualizar) para actualizar PepinoLauncher.
 echo Escribe (c) para ver las notas de la version.
 echo Escribe (limpiar) para eliminar la carpeta mods de tu .minecraft o de tu .tlauncher - Sirve para reinstalar los mods desde cero.
 echo Escribe (bug) para verificar si el exploit de Log4J sigue activo.
+echo.
+echo Escribe (reset) para reiniciar el PepinoLauncher (Solo para propositos de desarrollo)
 set /p type=
 if %type%==1 goto 1
 if %type%==2 goto 2
@@ -86,6 +111,8 @@ if %type%==lucky goto lucky
 if %type%==ltl goto ltl
 if %type%==limpiar goto limpiar
 if %type%==bug goto bug
+if %type%==reset goto 0
+if %type%==cambio goto cambio
 goto inicio
 
  :bug
@@ -237,11 +264,22 @@ goto pl2
 cls
 color e
 Title Changelog - PepinoLauncher
-echo Cambios de la version:
+echo Cambios de la version %version%:
 echo.
-echo - Arreglar las opciones de OptiFabric 1.18.1
-echo - Actualizar Lithium en el OptiFabric 1.18.1
-echo - Hacer que se ejecute la nueva version del PepinoLauncher al actualizar
+echo - Agregar las opciones de desarrollador
+echo - Actualizar las instrucciones a la version 5.0
+echo - Agregar la opcion de intercambio de modpacks:
+echo --> Por ahora solo permite intercambiar entre OptiFabric y PepinoLandia
+echo - Actualizar el modpack de OptiFabric 1.18.2:
+echo --> Actualizar todos los mods corresponientes a 1.18.2
+echo - Actualizar el modpack de PepinoLandia 2:
+echo --> Eliminar doble Optifine
+echo --> Actualizar el Furniture para solucion de bugs
+echo --> Agregar el archivo de verificacion para la nueva opcion de cambio de version rapido
+echo - Agregar variable para forzar descarga del modpack de PepinoLandia 2 (Solo en casos especiales)
+echo - Agregar variable para forzar actualizacion del PepinoLauncher al iniciar (Solo en casos especiales)
+echo - Actualizar la version de Fabric Loader a la 0.13.3 (Anterior: 0.12.12)
+echo - Solucion de bugs variados
 echo.
 echo Escribe "back" para volver al menu anterior.
 set /p type=
@@ -252,7 +290,7 @@ goto inicio
 cls
 color e
 Title Instalando Modpack - PepinoLandia2 - .minecraft
-if exist Modpack-PL2.zip (
+if exist Modpack-PL2.zip if %forzarmodpack% NEQ "true" (
 	echo Modpack ya esta descargado, moviendo a la carpeta mods...
 	copy "%~dp0\Modpack-PL2.zip" "%APPDATA%/.minecraft/"
 	echo Modpack ZIP movido correctamente.
@@ -267,7 +305,7 @@ if exist Modpack-PL2.zip (
 	if %type%==back goto pl2
 	goto inicio
 )
-	echo Descargando modpack de PepinoLandia2, esto puede tomar unos minutos (112Mb). Se avisara cuando termine la descarga...
+	echo Descargando modpack de PepinoLandia2, esto puede tomar unos minutos (110Mb). Se avisara cuando termine la descarga...
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/Modpack-PL2.zip', 'Modpack-PL2.zip')"
 	echo Modpack descargado, moviendo a la carpeta mods...
 	copy "%~dp0\Modpack-PL2.zip" "%APPDATA%/.minecraft/"
@@ -287,7 +325,7 @@ if exist Modpack-PL2.zip (
 cls
 color e
 Title Instalando Modpack - PepinoLandia2 - .tlauncher
-if exist Modpack-PL2.zip (
+if exist Modpack-PL2.zip if %forzarmodpack% NEQ "true" (
 	echo Modpack ya esta descargado, moviendo a la carpeta mods...
 	copy "%~dp0\Modpack-PL2.zip" "%APPDATA%/.tlauncher/"
 	powershell Expand-Archive Modpack-PL2.zip -DestinationPath %APPDATA%/.tlauncher/ -Force
@@ -302,7 +340,7 @@ if exist Modpack-PL2.zip (
 	if %type%==back goto pl2
 	goto inicio
 )
-	echo Descargando modpack de PepinoLandia2, esto puede tomar unos minutos (112Mb). Se avisara cuando termine la descarga...
+	echo Descargando modpack de PepinoLandia2, esto puede tomar unos minutos (110Mb). Se avisara cuando termine la descarga...
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/Modpack-PL2.zip', 'Modpack-PL2.zip')"
 	echo Modpack descargado, moviendo a la carpeta mods...
 	copy "%~dp0\Modpack-PL2.zip" "%APPDATA%/.tlauncher"
@@ -332,7 +370,7 @@ if exist Modpack-PL2.zip (
 	if %type%==back goto pl2
 	goto pl2
 )
-echo Descargando modpack de PepinoLandia2, esto puede tomar unos minutos (112Mb). Se avisara cuando termine la descarga...
+echo Descargando modpack de PepinoLandia2, esto puede tomar unos minutos (110Mb). Se avisara cuando termine la descarga...
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/Modpack-PL2.zip', 'Modpack-PL2.zip')"
 echo Modpack descargado!
 echo.
@@ -363,9 +401,10 @@ echo Descargando instalador de Fabric...
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar', 'fabric-installer-0.10.2.jar')"
 echo Instalador descargado, ahora empezando con la instalacion...
 echo.
-java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.minecraft/" -launcher win32 -mcversion 1.16.5 -loader 0.12.12
+java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.minecraft/" -launcher win32 -mcversion 1.16.5 -loader 0.13.3
 echo Fabric instalado
 echo.
+if not exist "%APPDATA%/.minecraft/mods" ( mkdir "%APPDATA%/.minecraft/mods" )
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric.zip', 'OptiFabric.zip')"
 copy "%~dp0\OptiFabric.zip" "%APPDATA%/.minecraft/mods"
 powershell Expand-Archive OptiFabric.zip -DestinationPath %APPDATA%/.minecraft/mods -Force
@@ -388,14 +427,15 @@ echo Descargando instalador de Fabric...
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar', 'fabric-installer-0.10.2.jar')"
 echo Instalador descargado, ahora empezando con la instalacion...
 echo.
-java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.minecraft/" -launcher win32 -mcversion 1.18.1 -loader 0.12.12
+java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.minecraft/" -launcher win32 -mcversion 1.18.2 -loader 0.13.3
 echo Fabric instalado
 echo.
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric-1.18.1.zip', 'OptiFabric-1.18.1.zip')"
-copy "%~dp0\OptiFabric-1.18.1.zip" "%APPDATA%/.minecraft/mods"
-powershell Expand-Archive OptiFabric-1.18.1.zip -DestinationPath %APPDATA%/.minecraft/mods -Force
+if not exist "%APPDATA%/.minecraft/mods" ( mkdir "%APPDATA%/.minecraft/mods" )
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric-1.18.2.zip', 'OptiFabric-1.18.2.zip')"
+copy "%~dp0\OptiFabric-1.18.2.zip" "%APPDATA%/.minecraft/mods"
+powershell Expand-Archive OptiFabric-1.18.2.zip -DestinationPath %APPDATA%/.minecraft/mods -Force
 echo Mods instalados!
-del "%APPDATA%\.minecraft\mods\OptiFabric-1.18.1.zip" /q
+del "%APPDATA%\.minecraft\mods\OptiFabric-1.18.2.zip" /q
 echo ZIP eliminado de la carpeta mods.
 color a
 echo Todo instalado!
@@ -415,9 +455,10 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://maven.fabr
 echo Instalador descargado, ahora empezando con la instalacion...
 echo NOTA: Es posible que debido a como funciona TLauncher, no se cree el perfil de Fabric. En este caso deben instalar Fabric por su cuenta desde TLauncher, los mods de este modpack ya estaran instalados.
 echo.
-java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.tlauncher" -launcher win32 -mcversion 1.16.5 -loader 0.12.12
+java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.tlauncher" -launcher win32 -mcversion 1.16.5 -loader 0.13.3
 echo Fabric instalado
 echo.
+if not exist "%APPDATA%/.tlauncher/mods" ( mkdir "%APPDATA%/.tlauncher/mods" )
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric.zip', 'OptiFabric.zip')"
 copy "%~dp0\OptiFabric.zip" "%APPDATA%/.tlauncher/mods"
 powershell Expand-Archive OptiFabric.zip -DestinationPath %APPDATA%/.tlauncher/mods -Force
@@ -441,14 +482,15 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://maven.fabr
 echo Instalador descargado, ahora empezando con la instalacion...
 echo NOTA: Es posible que debido a como funciona TLauncher, no se cree el perfil de Fabric. En este caso deben instalar Fabric por su cuenta desde TLauncher, los mods de este modpack ya estaran instalados.
 echo.
-java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.tlauncher" -launcher win32 -mcversion 1.18.1 -loader 0.12.12
+java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.tlauncher" -launcher win32 -mcversion 1.18.2 -loader 0.13.3
 echo Fabric instalado
 echo.
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric-1.18.1.zip', 'OptiFabric-1.18.1.zip')"
-copy "%~dp0\OptiFabric-1.18.1.zip" "%APPDATA%/.tlauncher/mods"
-powershell Expand-Archive OptiFabric-1.18.1.zip -DestinationPath %APPDATA%/.tlauncher/mods -Force
+if not exist "%APPDATA%/.tlauncher/mods" ( mkdir "%APPDATA%/.tlauncher/mods" ) 
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric-1.18.2.zip', 'OptiFabric-1.18.2.zip')"
+copy "%~dp0\OptiFabric-1.18.2.zip" "%APPDATA%/.tlauncher/mods"
+powershell Expand-Archive OptiFabric-1.18.2.zip -DestinationPath %APPDATA%/.tlauncher/mods -Force
 echo Mods instalados!
-del "%APPDATA%\.tlauncher\mods\OptiFabric-1.18.1.zip" /q
+del "%APPDATA%\.tlauncher\mods\OptiFabric-1.18.2.zip" /q
 echo ZIP eliminado de la carpeta mods.
 color a
 echo Todo instalado!
@@ -465,7 +507,7 @@ color b
 echo Descargando modpack OptiFabric
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric.zip', 'OptiFabric.zip')"
 echo Modpack descargado (Archivo "OptiFabric.zip").
-echo Seleccionar Minecraft 1.16.5 y Loader 0.12.12 en la ventana del cliente (Por defecto)
+echo Seleccionar Minecraft 1.16.5 y Loader 0.13.3 en la ventana del cliente (Por defecto)
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar', 'fabric-installer-0.10.2.jar')"
 echo Instalador descargado, ahora ejecutandolo para que puedas instalar Fabric.
 java -jar fabric-installer-0.10.2.jar
@@ -480,17 +522,249 @@ goto inicio
 cls
 color b
 echo Descargando modpack OptiFabric
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric-1.18.1.zip', 'OptiFabric-1.18.1.zip')"
-echo Modpack descargado (Archivo "OptiFabric-1.18.1.zip").
-echo Seleccionar Minecraft 1.18.1 y Loader 0.12.12 en la ventana del cliente (Por defecto)
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric-1.18.2.zip', 'OptiFabric-1.18.2.zip')"
+echo Modpack descargado (Archivo "OptiFabric-1.18.2.zip").
+echo Seleccionar Minecraft 1.18.2 y Loader 0.13.3 en la ventana del cliente (Por defecto)
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar', 'fabric-installer-0.10.2.jar')"
 echo Instalador descargado, ahora ejecutandolo para que puedas instalar Fabric.
 java -jar fabric-installer-0.10.2.jar
 echo.
-echo Si ya has instalado Fabric, entonces mueve el archivo OptiFabric-1.18.1.zip a la carpeta de mods.
+echo Si ya has instalado Fabric, entonces mueve el archivo OptiFabric-1.18.2.zip a la carpeta de mods.
 echo.
 echo Escribe "back" para volver al menu anterior.
 echo Escribe lo que sea para finalizar.
 set /p type=
 if %type%==back goto inicio
 goto inicio
+
+ :cambio
+cls
+color b
+title Cambiar modpacks - PepinoLauncher %version%
+echo.
+echo Escribe (1) para intercambiar el modpack (.minecraft)
+echo Escribe (2) para intercambiar el modpack (.tlauncher)
+echo.
+echo.
+echo Nota: Esta opcion solo funciona si alguno de los 2 modpacks ya estan instalados.
+echo.
+echo Escribe "back" para volver al menu anterior.
+set /p type=
+if %type%==1 goto intercambio1
+if %type%==2 goto intercambio2
+if %type%==back goto inicio
+goto inicio
+
+ :intercambio1
+cls
+color e
+echo.
+echo Cambiando modpack...
+echo.
+if exist "%APPDATA%\.minecraft\mods\optifabric.txt" goto cambiooptifabric
+if exist "%APPDATA%\.minecraft\mods\pepinolandia.txt" goto cambiopepinolandia
+echo.
+echo ERROR: No se detecto que el modpack estuviera instalado en la carpeta de mods.
+echo.
+echo Escribe "back" para volver al menu anterior.
+echo Escribe lo que sea para finalizar.
+set /p type=
+if %type%==back goto cambio
+goto inicio
+
+:cambiooptifabric
+cls
+color e
+echo.
+echo Cambiando modpack de OptiFabric a PepinoLandia 2...
+ren "%APPDATA%\.minecraft\mods" "mods-optifabric"
+echo Carpeta mods renombrada a mods-optifabric
+if exist "%APPDATA%\.minecraft\mods-pepinolandia" (
+ren "%APPDATA%\.minecraft\mods-pepinolandia" "mods"
+echo Todo instalado!
+echo.
+echo Escribe "back" para volver al menu anterior.
+echo Escribe lo que sea para finalizar.
+set /p type=
+if %type%==back goto pl2
+goto inicio
+) else if %forzarmodpack%==true (
+	echo Descargando modpack de PepinoLandia2
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/Modpack-PL2.zip', 'Modpack-PL2.zip')"
+	echo Modpack descargado, moviendo a la carpeta mods...
+	copy "%~dp0\Modpack-PL2.zip" "%APPDATA%/.minecraft/"
+	powershell Expand-Archive Modpack-PL2.zip -DestinationPath %APPDATA%/.minecraft/ -Force
+	echo Mods instalados!
+	del "%APPDATA%\.minecraft\Modpack-PL2.zip" /q
+	echo ZIP eliminado de la carpeta mods.
+	echo Todo instalado!
+	echo.
+	echo Escribe "back" para volver al menu anterior.
+	echo Escribe lo que sea para finalizar.
+	set /p type=
+	if %type%==back goto pl2
+	goto inicio
+) else if exist Modpack-PL2.zip if %forzarmodpack% NEQ "true" (
+	echo Modpack ya esta descargado, moviendo a la carpeta mods...
+	copy "%~dp0\Modpack-PL2.zip" "%APPDATA%/.minecraft/"
+	powershell Expand-Archive Modpack-PL2.zip -DestinationPath %APPDATA%/.minecraft/ -Force
+	echo Mods instalados!
+	del "%APPDATA%\.minecraft\Modpack-PL2.zip" /q
+	echo ZIP eliminado de la carpeta mods.
+	echo Todo instalado!
+	echo.
+	echo Escribe "back" para volver al menu anterior.
+	echo Escribe lo que sea para finalizar.
+	set /p type=
+	if %type%==back goto pl2
+	goto inicio
+)
+
+:cambiopepinolandia
+cls
+color e
+echo.
+echo Cambiando modpack de PepinoLandia 2 a OptiFabric...
+ren "%APPDATA%\.minecraft\mods" "mods-pepinolandia"
+echo Carpeta mods renombrada a "mods-pepinolandia"
+if exist "%APPDATA%\.minecraft\mods-optifabric" (
+ren "%APPDATA%\.minecraft\mods-optifabric" "mods"
+echo Todo instalado!
+echo.
+echo Escribe "back" para volver al menu anterior.
+echo Escribe lo que sea para finalizar.
+set /p type=
+if %type%==back goto pl2
+goto inicio
+) else (
+echo Descargando instalador de Fabric...
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar', 'fabric-installer-0.10.2.jar')"
+echo Instalador descargado, ahora empezando con la instalacion...
+echo.
+java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.minecraft/" -launcher win32 -mcversion 1.16.5 -loader 0.13.3
+echo Fabric instalado
+echo.
+if not exist "%APPDATA%/.minecraft/mods" ( mkdir "%APPDATA%/.minecraft/mods" )
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric.zip', 'OptiFabric.zip')"
+copy "%~dp0\OptiFabric.zip" "%APPDATA%/.minecraft/mods"
+powershell Expand-Archive OptiFabric.zip -DestinationPath %APPDATA%/.minecraft/mods -Force
+echo Mods instalados!
+del "%APPDATA%\.minecraft\mods\OptiFabric.zip" /q
+echo ZIP eliminado de la carpeta mods.
+color a
+echo Todo instalado!
+echo.
+echo Escribe "back" para volver al menu anterior.
+echo Escribe lo que sea para finalizar.
+	set /p type=
+	if %type%==back goto pl2
+	goto inicio
+)
+
+REM TLauncher
+
+ :intercambio2
+cls
+color e
+echo.
+echo Cambiando modpack...
+echo.
+if exist "%APPDATA%\.tlauncher\mods\optifabric.txt" goto cambiooptifabric
+if exist "%APPDATA%\.tlauncher\mods\pepinolandia.txt" goto cambiopepinolandia
+echo.
+echo ERROR: No se detecto que el modpack estuviera instalado en la carpeta de mods.
+echo.
+echo Escribe "back" para volver al menu anterior.
+echo Escribe lo que sea para finalizar.
+set /p type=
+if %type%==back goto cambio
+goto inicio
+
+:cambiooptifabric2
+cls
+color e
+echo.
+echo Cambiando modpack de OptiFabric a PepinoLandia 2...
+ren "%APPDATA%\.tlauncher\mods" "mods-optifabric"
+echo Carpeta mods renombrada a mods-optifabric
+if exist "%APPDATA%\.tlauncher\mods-pepinolandia" (
+ren "%APPDATA%\.tlauncher\mods-pepinolandia" "mods"
+echo Todo instalado!
+echo.
+echo Escribe "back" para volver al menu anterior.
+echo Escribe lo que sea para finalizar.
+set /p type=
+if %type%==back goto pl2
+goto inicio
+) else if %forzarmodpack%==true (
+	echo Descargando modpack de PepinoLandia2
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/Modpack-PL2.zip', 'Modpack-PL2.zip')"
+	echo Modpack descargado, moviendo a la carpeta mods...
+	copy "%~dp0\Modpack-PL2.zip" "%APPDATA%/.tlauncher/"
+	powershell Expand-Archive Modpack-PL2.zip -DestinationPath %APPDATA%/.tlauncher/ -Force
+	echo Mods instalados!
+	del "%APPDATA%\.tlauncher\Modpack-PL2.zip" /q
+	echo ZIP eliminado de la carpeta mods.
+	echo Todo instalado!
+	echo.
+	echo Escribe "back" para volver al menu anterior.
+	echo Escribe lo que sea para finalizar.
+	set /p type=
+	if %type%==back goto pl2
+	goto inicio
+) else if exist Modpack-PL2.zip if %forzarmodpack% NEQ "true" (
+	echo Modpack ya esta descargado, moviendo a la carpeta mods...
+	copy "%~dp0\Modpack-PL2.zip" "%APPDATA%/.tlauncher/"
+	powershell Expand-Archive Modpack-PL2.zip -DestinationPath %APPDATA%/.tlauncher/ -Force
+	echo Mods instalados!
+	del "%APPDATA%\.tlauncher\Modpack-PL2.zip" /q
+	echo ZIP eliminado de la carpeta mods.
+	echo Todo instalado!
+	echo.
+	echo Escribe "back" para volver al menu anterior.
+	echo Escribe lo que sea para finalizar.
+	set /p type=
+	if %type%==back goto pl2
+	goto inicio
+)
+
+:cambiopepinolandia2
+cls
+color e
+echo.
+echo Cambiando modpack de PepinoLandia 2 a OptiFabric...
+ren "%APPDATA%\.tlauncher\mods" "mods-pepinolandia"
+echo Carpeta mods renombrada a "mods-pepinolandia"
+if exist "%APPDATA%\.tlauncher\mods-optifabric" (
+ren "%APPDATA%\.tlauncher\mods-optifabric" "mods"
+echo Todo instalado!
+echo.
+echo Escribe "back" para volver al menu anterior.
+echo Escribe lo que sea para finalizar.
+set /p type=
+if %type%==back goto pl2
+goto inicio
+) else (
+echo Descargando instalador de Fabric...
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar', 'fabric-installer-0.10.2.jar')"
+echo Instalador descargado, ahora empezando con la instalacion...
+echo.
+java -jar fabric-installer-0.10.2.jar client -dir "%APPDATA%/.tlauncher/" -launcher win32 -mcversion 1.16.5 -loader 0.13.3
+echo Fabric instalado
+echo.
+if not exist "%APPDATA%/.tlauncher/mods" ( mkdir "%APPDATA%/.tlauncher/mods" )
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://pepinolandia.ml/descargas/OptiFabric.zip', 'OptiFabric.zip')"
+copy "%~dp0\OptiFabric.zip" "%APPDATA%/.tlauncher/mods"
+powershell Expand-Archive OptiFabric.zip -DestinationPath %APPDATA%/.tlauncher/mods -Force
+echo Mods instalados!
+del "%APPDATA%\.tlauncher\mods\OptiFabric.zip" /q
+echo ZIP eliminado de la carpeta mods.
+color a
+echo Todo instalado!
+echo.
+echo Escribe "back" para volver al menu anterior.
+echo Escribe lo que sea para finalizar.
+	set /p type=
+	if %type%==back goto pl2
+	goto inicio
+)
